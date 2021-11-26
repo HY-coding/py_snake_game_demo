@@ -12,9 +12,10 @@ GRID_SIZE = 20
 GRID_WIDTH = SCREEN_WIDTH / GRID_SIZE
 GRID_HEIGHT = SCREEN_HEIGHT / GRID_SIZE
 
-UP = [0, -1]
-DOWN = [0, 1]
-LEFT = [-1, 0]
+
+UP    = [0, -1]
+DOWN  = [0, 1]
+LEFT  = [-1, 0]
 RIGHT = [1, 0]
 
 class Snake():
@@ -23,26 +24,16 @@ class Snake():
         self.positions = [((SCREEN_WIDTH/2), (SCREEN_HEIGHT/2))]
         self.direction = LEFT
         self.color = (17, 24, 47)
-        self.score = 0
-        
+        self.score = 0        
 
     def get_head_position(self):
         return self.positions[0]
-
-    def turn(self, point):
-        if self.length > 1 and (point[0] * -1, point[1] * -1) == self.direction:
-            return
-        else:
-            self.direction = point
     
     def set_direction(self, new_dir):
-        if self.length > 1 and (new_dir[0] * -1, new_dir[1] * -1) == self.direction:
+        if self.length > 1 and [new_dir[0] * -1, new_dir[1] * -1] == self.direction:
             return
         else :
             self.direction = new_dir
-
-        
-
 
     def move(self):
         
@@ -140,10 +131,6 @@ def main():
         snake.handle_keys()
         drawGrid(surface)
         snake.move()
-
-        head = snake.get_head_position() 
-        print("head {0}", head)
-        print(food.position)
 
         if snake.get_head_position() == food.position:
             print("snake ate food")
